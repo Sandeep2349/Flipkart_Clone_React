@@ -1,0 +1,33 @@
+import "./Loading.css"
+
+export const Loading = () => {
+    return (
+        <>
+            {/* <!-- From Uiverse.io by Novaxlo -->  */}
+            <div class="capybaraloader">
+                <div class="capybara">
+                    <div class="capyhead">
+                        <div class="capyear">
+                            <div class="capyear2"></div>
+                        </div>
+                        <div class="capyear"></div>
+                        <div class="capymouth">
+                            <div class="capylips"></div>
+                            <div class="capylips"></div>
+                        </div>
+                        <div class="capyeye"></div>
+                        <div class="capyeye"></div>
+                    </div>
+                    <div class="capyleg"></div>
+                    <div class="capyleg2"></div>
+                    <div class="capyleg2"></div>
+                    <div class="capy"></div>
+                </div>
+                <div class="loader">
+                    <div class="loaderline"></div>
+                </div>
+            </div>
+
+        </>
+    )
+}
