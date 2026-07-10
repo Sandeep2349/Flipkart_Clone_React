@@ -1,8 +1,10 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { DECREMENT, INCREMENT, REMOVEFROMCART } from "../Redux/Cart/Cart";
 
 export const Cart = () => {
     // const items = useSelector(state => state.cart.items);
     let cartData = useSelector(state => state.cart)
+    const dispatch = useDispatch();
 
     return (
         <>
@@ -18,15 +20,37 @@ export const Cart = () => {
             <div className="container">
                 <div className="row m-5">
                     {
-                        cartData.map((item)=>(
+                        cartData.map((item) => (
                             <div className="row mb-4 key={item.id}">
                                 <div className="col-5">
-                                <img src={item.thumbnail} alt="" height={170} />
+                                    <img src={item.thumbnail} alt="" height={170} />
                                 </div>
                                 <div className="col-7">
                                     <h1>{item.title}</h1>
                                     <p>{item.description}</p>
                                     <mark>{item.price}</mark>
+                                    &nbsp;&nbsp;
+                                    
+                                    <button className="btn btn-primary"
+                                        onClick={() => dispatch(INCREMENT(item.id))}
+                                    >
+                                        +
+                                    </button>&nbsp;&nbsp;
+                                    <span>
+                                        {item.quantity}
+                                    </span>&nbsp;&nbsp; 
+                                    <button className="btn btn-danger"
+                                        onClick={() => dispatch(DECREMENT(item.id))}
+                                    >
+                                        -
+                                    </button>
+                                    &nbsp;&nbsp;
+                                    <button className="btn btn-warning"
+                                        onClick={() => dispatch(REMOVEFROMCART(item.id))}
+                                    >
+                                        Remove
+                                    </button>
+
                                 </div>
                             </div>
                         ))

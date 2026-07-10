@@ -54,9 +54,71 @@ let cartSlice=createSlice({
             }
 
             localStorage.setItem('cartData',JSON.stringify(state))
-        })
+        }),
+
+        // Increase quantity
+        INCREMENT: (state, action) => {
+
+            const item = state.find(
+                item => item.id === action.payload
+            );
+
+
+            if (item) {
+                item.quantity += 1;
+            }
+
+
+            localStorage.setItem(
+                "cartData",
+                JSON.stringify(state)
+            );
+
+        },
+
+
+        // Decrease quantity
+        DECREMENT: (state, action) => {
+
+            const item = state.find(
+                item => item.id === action.payload
+            );
+
+
+            if (item && item.quantity > 1) {
+
+                item.quantity -= 1;
+
+            }
+
+
+            localStorage.setItem(
+                "cartData",
+                JSON.stringify(state)
+            );
+
+        },
+
+
+        // Remove item completely
+        REMOVEFROMCART: (state, action) => {
+
+            const updatedCart = state.filter(
+                item => item.id !== action.payload
+            );
+
+
+            localStorage.setItem(
+                "cartData",
+                JSON.stringify(updatedCart)
+            );
+
+
+            return updatedCart;
+
+        }
     }
 })
 
-export const {ADDTOCART} = cartSlice.actions
+export const {ADDTOCART,INCREMENT,DECREMENT,REMOVEFROMCART} = cartSlice.actions
 export default cartSlice.reducer
